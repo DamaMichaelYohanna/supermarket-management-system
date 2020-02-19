@@ -1,0 +1,44 @@
+body{
+	margin: 0px;
+}
+.clr{
+	clear:both;
+}
+.login-page{
+	margin: auto;
+	margin-top: 10%;
+	padding: 2%;
+	opacity: 0.8;
+	border-radius:0px 20px 0px 20px;
+	background: silver;
+	width: 30%;
+
+}
+
+.login-page input{
+	margin: 1%;
+	float: right;
+}
+.login-page img{
+	height: 50px;
+	border-radius: 50px;
+
+}
+.login-page button{
+	width: 100%;
+	margin-right: auto;
+}
+
+/* the home page/dash board css*/
+
+.home-block{
+
+}
+.base-head p{
+	background:white;
+	padding:1%;
+	text-align: right;
+	padding-right: 3%;
+}
+
+

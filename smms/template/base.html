@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} base title {% endblock %}</title>
+    <link rel="stylesheet" type ="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+	<!--the general header !-->
+	{% block header%}
+		<div class="first-head">
+			<span style="color:tomato;">hello world</span>
+			<a href="/logout/">Logout</a>
+		</div>
+		<div class="second-head1">
+				<a id="home" href="/">Home</a>
+				<a id="product" href="/product/">Products</a>
+				<a id="sale" href="/sale/">Sales</a>
+			<span class="right-link1">
+				<a href="home"><img src="{% static 'fb.png' %}"></a>
+				<a href="product"><img src="{% static 'in.png' %}"></a>
+				<a href="/sale/"><img src="{% static 'sm.png' %}"></a>
+			</span>
+			
+		</div>
+	{% endblock %}
+
+	{% block content %}
+	{% endblock%}
+</body>
+</html>

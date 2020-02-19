@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %} base title {% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+</head>
+<body>
+{% block head%}
+	<div class="base-head">
+		<div class="first-head">
+			<a id="change-password" href="/password_change/">Change password</a>
+			<a id="logout" href="/logout/">Logout</a>
+		</div>
+		<div class="second-header" style="background: #f1f1f1;padding: 1%;color: green;box-sizing: border-box;">
+			<a id="home" href=""> Home</a>
+			<a id="Product" href=""> Products</a>
+			<a id="sale" href=""> Sales</a>
+			<a id="profile" href=""> Profile</a>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block content%}
+
+{% endblock %}
+</body>
