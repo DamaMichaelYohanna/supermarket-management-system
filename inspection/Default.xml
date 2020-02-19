@@ -5,6 +5,8 @@
       <list>
         <option value="django.db.models.fields.files.ImageField.url" />
         <option value="MARDIAT.smms.models.TotalProduct.objects" />
+        <option value="MARDIAT.smms.models.Sale.objects" />
+        <option value="MARDIAT.smms.models.Product.objects" />
       </list>
     </option>
   </inspection_tool>
