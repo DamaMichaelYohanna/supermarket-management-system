@@ -8,6 +8,7 @@
         <option value="MARDIAT.smms.models.Sale.objects" />
         <option value="MARDIAT.smms.models.Product.objects" />
         <option value="MARDIAT.smms.admin.smms" />
+        <option value="MARDIAT.smms.models.Profile.objects" />
       </list>
     </option>
   </inspection_tool>
