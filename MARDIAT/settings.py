@@ -73,6 +73,9 @@ WSGI_APPLICATION = 'MARDIAT.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# note this database settings are for my personal db.
+# secondly, am using posgresql over here so you could do your
+# configuration as well
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

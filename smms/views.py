@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
 
+from . import models
+
 
 # Create your views here.
 def login(request):
@@ -29,4 +31,9 @@ def profile(request):
 @login_required()
 def homepage(request):
     """home page"""
-    return render(request, 'home.html')
+    total_product = models.TotalProduct.objects.all().count()
+    sales = models.Sale.objects.all().count()
+    product = models.Product.objects.all().count()
+    context = {'section': 'Dashboard', 'total': total_product, 'sales': sales,
+               'product': product}
+    return render(request, 'home.html', context)
