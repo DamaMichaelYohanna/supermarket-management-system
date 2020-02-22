@@ -12,6 +12,7 @@
         <option value="django.db.models.fields.related.OneToOneField.first_name" />
         <option value="django.db.models.fields.related.OneToOneField.username" />
         <option value="django.db.models.fields.related.OneToOneField.last_name" />
+        <option value="django.db.models.fields.related.OneToOneField.email" />
       </list>
     </option>
   </inspection_tool>
