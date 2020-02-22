@@ -9,6 +9,9 @@
         <option value="MARDIAT.smms.models.Product.objects" />
         <option value="MARDIAT.smms.admin.smms" />
         <option value="MARDIAT.smms.models.Profile.objects" />
+        <option value="django.db.models.fields.related.OneToOneField.first_name" />
+        <option value="django.db.models.fields.related.OneToOneField.username" />
+        <option value="django.db.models.fields.related.OneToOneField.last_name" />
       </list>
     </option>
   </inspection_tool>
