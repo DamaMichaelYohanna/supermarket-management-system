@@ -8,13 +8,14 @@
 </head>
 <body style="background-image: url('/static/bg2.jpg');font-family: helvetica">
 	<div class="login-page">
-		<form action="login" method="POST">
+		<form action="." method="POST">
 			<p>
 				<img src="{% static 'head.png'%}"><input type="text" name="username" placeholder="Admin id" autocomplete="username">
 			</p>
 			<p>
 				<img src="{% static 'pad.jpeg'%}"><input type="password" name="password" placeholder="Password">
 			</p>
+			<input type="hidden" name="next" value="{{next}}">
 			{% csrf_token %}
 			<button>login</button>
 		</form>

@@ -3,5 +3,57 @@
 {% block title %} {{user }}'s Profile{% endblock %} 
 
 {% block content %}
+	<div class="profile-block">
+		<div class="profile-left">
+			<img src="{{ profile.image.url }}">
+
+			<p>
+				Name: <span>{{profile.get_full_name}}</span>
+			</p>
+			<hr>
+			<p>
+				Rank: <span>{{profile.rank}}</span> 
+			</p>
+			<hr>
+			<p>
+				Phone: <span>{{profile.phone}}</span>
+			</p>
+			<hr>
+			<p>
+				Email: <span>{{profile.user.email}}</span>
+			</p>
+			<hr>
+			<p>
+				Gender: <span>{{profile.gender}}</span>
+			</p>
+			<hr>
+			<p>
+				State: <span>{{profile.state}}</span>
+			</p>
+			<hr>
+			
+		</div>
+		<div class="profile-right">
+			<table id="dt">
+				<tr>
+				<th>Name</th>
+				<th>Phone</th>
+				<th>Email Address</th>
+				<th>Image</th>
+				</tr>
+				{% for user in all_user %}
+				<tr>
+					<td>
+						{{user.get_full_name}}
+					</td>
+					<td>{{user.phone}}</td>
+					<td>{{user.get_email}}</td>
+					<td><img style="width:40px;height:40px;" src="{{user.get_image}}"></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		
+	</div>
 
 {% endblock %}

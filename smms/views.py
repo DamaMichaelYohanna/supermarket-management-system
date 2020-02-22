@@ -1,17 +1,11 @@
 from django.shortcuts import render
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import (LoginView, LogoutView,
+                                       PasswordChangeView, PasswordResetView)
 from django.contrib.auth.decorators import login_required
 
 from . import models
 
-
 # Create your views here.
-def login(request):
-    if request.method == 'POST':
-        print('it a post method', request.POST.get('username'))
-    else:
-        print('not a post request')
-    return render(request, 'account/login.html')
 
 
 class Login(LoginView):
@@ -24,8 +18,27 @@ class Logout(LogoutView):
     template_name = 'account/logout.html'
 
 
+class ChangePassword(PasswordChangeView):
+    """class based view for changing password"""
+    template_name = 'account/password_change.html'
+    success_url = '/profile/'
+
+    def get_context_data(self, **kwargs):
+        kwargs['section'] = 'Profile'
+        return super().get_context_data(**kwargs)
+
+
+class PasswordReset(PasswordResetView):
+    """class base view for resetting user password"""
+    template_name = 'account/password_reset.html'
+
+
 def profile(request):
-    return render(request, 'account/profile.html')
+    user_id = request.user.id
+    user_profile = models.Profile.objects.get(user=user_id)
+    all_user = models.Profile.objects.all()
+    context = {'profile': user_profile, 'all_user': all_user}
+    return render(request, 'account/profile.html', context)
 
 
 @login_required()

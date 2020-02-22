@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'n&k&&yukt7@7hpn_#wn^2%do_@rh%_rot#)9^^61=8cx$51*3h'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'MARDIAT.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'attendance',
+        'NAME': 'smms',
         'USER': 'dama',
         'PASSWORD': 'leg@cy1172',
         'HOST': 'localhost',
@@ -125,7 +125,7 @@ STATIC_URL = '/static/'
 STATIC_FILES_DIR = os.path.join(BASE_DIR, 'smms', 'static')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '../media_root')
+MEDIA_ROOT = os.path.join(BASE_DIR, './media_root')
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
