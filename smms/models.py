@@ -1,11 +1,49 @@
 import os
 from django.db import models
 from django.db.models.signals import post_save
+from django.contrib.auth.models import User
 
 
 # Create your models here.
-def path_to_images(filename, instance):
+GENDER = (('Male', 'Male'), ('Female', 'Female'))
+
+
+def path_to_images(instance, filename):
     return os.path.join('picture', str(instance), filename)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    gender = models.CharField(choices=GENDER, max_length=10, default=GENDER[0])
+    phone = models.PositiveIntegerField()
+    rank = models.CharField(max_length=20)
+    address = models.CharField(max_length=50)
+    image = models.ImageField(upload_to=path_to_images, null=True, blank=True)
+    state = models.CharField(max_length=10)
+
+    def __str__(self):
+        return f'{self.user}'
+
+    def get_full_name(self):
+        if self.user.first_name and self.user.last_name:
+            full_name = self.user.first_name + ' ' + self.user.last_name
+        else:
+            full_name = self.user.username
+        return full_name
+
+    def get_email(self):
+        if self.user.email:
+            return self.user.email
+        else:
+            return None
+
+    def get_image(self):
+        no_image = '/static/no_pic.png'
+        if self.image.url:
+            image = self.image.url
+        else:
+            image = no_image
+        return image
 
 
 class TotalProduct(models.Model):
@@ -83,7 +121,7 @@ def add_to_total_product(sender, **kwargs):
         except ValueError:
             print('this is an error with this error message')
         except KeyError:
-            print('A key error occured')
+            print('A key error occur')
         except Exception:  # if error, usually no file matching query
             # create a new product in the TotalProduct and add the values
             new_product = TotalProduct.objects.create(name=name,

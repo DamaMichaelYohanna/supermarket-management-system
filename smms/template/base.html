@@ -10,15 +10,15 @@
 {% block head%}
 	<div class="base-head">
 		<div class="first-head">
-			<a id="change-password" href="/password_change/">Change password</a>
+			<a id="change-password" href="/change_password/">Change password</a>
 			<a id="logout" href="/logout/">Logout</a>
 		</div>
 		<div class="second-header">
 			<img src="{% static 'head2.jpeg' %}">
 			<a id="home" href="/"> Home</a>
-			<a id="Product" href="product"> Products</a>
-			<a id="sale" href="sales"> Sales</a>
-			<a id="profile" href="profile"> Profile</a>
+			<a id="product" href="/product/"> Products</a>
+			<a id="sale" href="/sales/"> Sales</a>
+			<a id="profile" href="/profile/"> Profile</a>
 
 			<span class="social"><a href=""><img src="{% static 'fb.png'%}"></a></span>
 			<span class="social"><a href=""><img src="{% static 'fb.png'%}"></a></span>
@@ -35,6 +35,18 @@
 {% if section == 'Dashboard'%}
 	<script>
 		document.getElementById('home').style.color = 'tomato'
+	</script>
+{% elif section == 'Profile'%}
+	<script>
+		document.getElementById('profile').style.color = 'tomato'
+	</script>
+{% elif section == 'Sales'%}
+	<script>
+		document.getElementById('sale').style.color = 'tomato'
+	</script>
+{% elif section == 'Products'%}
+	<script>
+		document.getElementById('product').style.color = 'tomato'
 	</script>
 {% endif %}
 </body>
