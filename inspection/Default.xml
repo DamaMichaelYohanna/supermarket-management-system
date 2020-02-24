@@ -13,6 +13,7 @@
         <option value="django.db.models.fields.related.OneToOneField.email" />
         <option value="django.db.models.fields.files.ImageField.url" />
         <option value="MARDIAT.smms.models.Investment.objects" />
+        <option value="MARDIAT.smms.models.price" />
       </list>
     </option>
   </inspection_tool>
