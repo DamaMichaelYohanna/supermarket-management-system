@@ -16,6 +16,7 @@
         <option value="MARDIAT.smms.models.price" />
         <option value="object.price" />
         <option value="object.save" />
+        <option value="MARDIAT.smms.models.TotalSalesPrice.objects" />
       </list>
     </option>
   </inspection_tool>
