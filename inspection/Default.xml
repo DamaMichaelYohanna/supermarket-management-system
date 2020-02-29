@@ -20,6 +20,7 @@
         <option value="MARDIAT.smms.models.Sale.image" />
         <option value="MARDIAT.smms.views.sale_query" />
         <option value="MARDIAT.smms.views.total_goods_sold" />
+        <option value="MARDIAT.smms.views.total_price" />
       </list>
     </option>
   </inspection_tool>
