@@ -1,16 +1,18 @@
 from django.contrib import admin
 
 # Register your models here.
-from smms.models import Product, Sale, TotalProduct, Profile
+from .models import Product, Sale, TotalProduct, Profile, Investment, TotalSalesPrice
 
 
 class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name', 'category']
     list_display = ['name', 'category', 'quantity', 'date']
-    # filter_by = ['name']
+    list_filter = ['date', 'name']
 
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Sale)
 admin.site.register(TotalProduct)
 admin.site.register(Profile)
+admin.site.register(Investment)
+admin.site.register(TotalSalesPrice)

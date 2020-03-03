@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{section}} {% endblock %}
+
+{% block content %} 
+	<div class="sale-body" style="height: 500px;margin-top: 1%;padding-right: 3%; padding-left: 3%;">
+		<div style="margin: 2%;">
+			<p style="font-family:FreeMono;float:left; width: 70%;text-align: center;">
+				Sales Description
+			</p>
+			<p style="float:right; width: 20%;">
+				<a style="background: tomato;padding: 3%;border-radius: 40px;text-decoration: none;color:white;" href="/sales/add">Add new Record</a>
+			</p>
+			
+		</div>
+		<div class="sale-left">
+			<p class="filter-head">FILTER</p>
+			<p style="margin: 2%;color: grey">
+				By date
+			</p>
+			<p id="filter-p">
+				<a id="filter" href="">Any day</a>
+			</p>
+			<p id="filter-p">
+				<a id="filter" href=""> Today </a>
+			</p>
+			<p id="filter-p">
+				<a id="filter" href="">Past 7 days</a>
+			</p>
+			<p id="filter-p">
+				<a id="filter" href=""> This month </a>
+			</p>
+			<p id="filter-p">
+				<a id="filter" href=""> This year </a>
+			</p id="filter-p">
+		</div>
+		<div class="sale-right">
+				<form action="." method="POST" class="search-form">
+					<img src="{% static 'search1.jpg' %}" height="20" width="20">
+					<input type="text" name="search" placeholder="search by product name" autocomplete="search">
+					<input type="submit" name="submit" value="search">
+					{% csrf_token %}
+				</form>
+				<table id="sale-table">
+					<tr>
+						<th>Name</th>
+						<th>Category</th>
+						<th>Sub cat.</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Image</th>
+						<th>Actions</th>
+					</tr>
+				{% for product in page_object %}
+					<tr>
+						<td>{{product.name}}</td>
+						<td>{{product.category}}</td>
+						<td>{{product.sub_category}}</td>
+						<td>{{product.price}}</td>
+						<td>{{product.quantity}}</td>
+						<td><img class="attr" src="{{product.get_picture}}" height="15" width="15" ></td>
+						<td class="edits">
+							<a href="/sale/update/{{user.id}}"><img src="{% static 'biro.jpg' %}"></a>
+							<a href="/sale/delete/{{product.id}}"><img src="{% static 'del.jpeg' %}"></a>
+							<a href="/sale/details/{{product.id}}"><img src="{% static 'search1.jpg' %}"></a>
+						</td>
+					</tr>
+				{% endfor %}
+				</table>
+				<hr style="opacity: 0.5;">
+				<p style="padding-left: 2%;opacity: 0.6;"> Total Goods sold: {{goods_sold}} <span style="margin-left: 5%;">Price: ₦{{total_price}}</span></p>
+				<hr style="opacity: 0.2;">
+				<div class="pagination">
+					{% if page_object.has_previous %}
+						<a href="?page={{page_object.previous_page_number}}">previous</a>
+					{% endif %}
+					<p>
+						{{page_object.number}} of {{page_object.paginator.num_pages}}
+					</p>
+					{% if page_object.has_next %}
+						<a href="?page={{page_object.next_page_number}}">next</a>
+					{% endif %}
+				</div>
+			
+		</div>
+	</div>
+{% endblock %}

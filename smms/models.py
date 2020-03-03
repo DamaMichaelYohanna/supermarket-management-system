@@ -3,7 +3,6 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-
 # Create your models here.
 GENDER = (('Male', 'Male'), ('Female', 'Female'))
 
@@ -25,19 +24,25 @@ class Profile(models.Model):
         return f'{self.user}'
 
     def get_full_name(self):
-        if self.user.first_name and self.user.last_name:
-            full_name = self.user.first_name + ' ' + self.user.last_name
+        """return fullname of user"""
+        if self.user.first_name and self.user.last_name:  # if user has first and last name
+            full_name = self.user.first_name + ' ' + self.user.last_name  # join the and return
         else:
-            full_name = self.user.username
-        return full_name
+            full_name = self.user.username  # if no first and last name retur username
+        return full_name  # return the final fullname
 
     def get_email(self):
+        """return user image from user models"""
         if self.user.email:
             return self.user.email
         else:
             return None
 
     def get_image(self):
+        """
+            get the user image. if no image,
+            return link to default image to be use
+        """
         no_image = '/static/no_pic.png'
         if self.image.url:
             image = self.image.url
@@ -74,7 +79,7 @@ class Product(models.Model):
     supplier = models.CharField(max_length=100)
     quantity = models.PositiveIntegerField()
     picture = models.ImageField(upload_to=path_to_images)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -94,7 +99,7 @@ class Product(models.Model):
 def add_to_total_product(sender, **kwargs):
     """
         signal function to add new product input to TotalProduct
-        and if the already exits, increment the price and quantity
+        and if the item already exits, increment the price and quantity
     """
     # print(kwargs)
     if kwargs['created']:  # check if product is created successfully
@@ -104,7 +109,7 @@ def add_to_total_product(sender, **kwargs):
         quantity = kwargs['instance'].quantity  # same here
         price = kwargs['instance'].price  # get product price from instance
         try:  # catch error easily
-            # check if product with product already exit in total product
+            # check if product with product name already exit in total product
             product = TotalProduct.objects.filter(name=name)
             # filter down to get product categories for secure query
             final_product = product.filter(category=category)
@@ -122,7 +127,7 @@ def add_to_total_product(sender, **kwargs):
             print('this is an error with this error message')
         except KeyError:
             print('A key error occur')
-        except Exception:  # if error, usually no file matching query
+        except AttributeError:  # if error, usually no file matching query
             # create a new product in the TotalProduct and add the values
             new_product = TotalProduct.objects.create(name=name,
                                                       category=category, quantity=quantity,
@@ -152,3 +157,81 @@ class Sale(models.Model):
 
     def __str__(self):
         return f'{self.name} {self.quantity}'
+
+    def get_picture(self):
+        """
+            get the product image. if no image,
+            return link to default image to be use
+        """
+        no_picture = '/static/no_pic.png'
+        if self.picture.url:
+            picture = self.picture.url
+        else:
+            picture = no_picture
+        return picture
+
+
+class Investment(models.Model):
+    """total money invested in the business"""
+    price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.price}'
+
+
+def populate_investment(sender, **kwargs):
+    """function to populate the investment model."""
+    print('in the signal phase')
+    if 'created' in kwargs:  # if new record created successfully
+        goods_price = kwargs['instance'].price  # get the price of the goods
+        print(goods_price)
+        try:
+            handle: object = Investment.objects.all()[0]  # get invest model ready to populate
+            handle.price += goods_price  # add new price to existing ones
+            handle.save()  # save the record
+        except IndexError:  # index error resulting from not object find
+            Investment.objects.create(price=goods_price)  # create new entry
+        print('done with it')
+    else:  # if not created, just pass
+        pass
+
+
+# once new product are uploaded, populate the investment model
+# with new price. resulting in the net price being invested in
+# the business
+post_save.connect(populate_investment, Product)
+
+
+class TotalSalesPrice(models.Model):
+    """
+        total sale. Investment - total
+        sales give the income/profit made
+    """
+    price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.price}'
+
+
+def populate_total_sales_price(sender, **kwargs):
+    """function to populate the investment model."""
+    print('in the signal phase')
+    if 'created' in kwargs:  # if new record created successfully
+        goods_price = kwargs['instance'].price  # get the price of the goods
+        goods_quantity = kwargs['instance'].quantity
+        total_price = goods_quantity * goods_price
+        try:
+            handle: object = TotalSalesPrice.objects.all()[0]  # get invest model ready to populate
+            # multiply price by amount before adding to record
+            handle.price += total_price  # add new price to existing ones
+            handle.save()  # save the record
+        except IndexError:  # index error resulting from not object find
+            TotalSalesPrice.objects.create(price=total_price)  # create new entry
+        print('done with it')
+    else:  # if not created, just pass
+        pass
+
+
+# once new sales are made, add new price to
+# the total amount of sells ever made
+post_save.connect(populate_total_sales_price, Sale)

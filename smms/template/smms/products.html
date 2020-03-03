@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title%}{{section}}{% endblock %}
+
+{% block content %} 
+	<div class="product-body" style="margin-top: 2%;">
+		<div id="product-page-top">
+			<form style="float:left">
+					<input type="search" name="search" placeholder="search">
+					<input type="submit" name="submit" value="Go">
+			</form>
+			<div style="float:right;width: 20%;text-align: center;">
+				<a href="">
+					<img src="{% static 'cross.png' %}" height="20" width="20">
+				</a>
+			</div>
+			<div style="float:right;width: 20%;">
+				<form method="GET" action=".">
+					<select>
+						<option>
+							All
+						</option>
+						<option>
+							Food
+						</option>
+						<option>
+							Drinks
+						</option>
+					</select>
+					<input type="submit" name="submit" value="Go">
+				</form>
+			</div>
+		</div>
+		<div class="clr"></div>
+		<div class="product-main-body">
+			<table id="product-table">
+				<tr>
+					<th>
+						Name
+					</th>
+					<th>
+						Category
+					</th><th>
+						Sub-category
+					</th>
+					<th>
+						price
+					</th>
+					<th>
+						Quantity
+					</th>
+					<th>
+						Supplier
+					</th>
+					<th>
+						Date/Time
+					</th>
+					<th>
+						Picture
+					</th>
+					<th>
+						Actions
+					</th>
+				</tr>
+				{% for  product in products %}
+				<tr>
+					<td>
+						{{ product.name }}
+					</td>
+					<td>
+						{{ product.category }}
+					</td>
+					<td>
+						{{ product.sub_category }}
+					</td>
+					<td>
+						{{ product.price }}
+					</td>
+					<td>
+						{{ product.quantity }}
+					</td>
+					<td>
+						{{ product.supplier }}
+					</td>
+					<td>
+						{{ product.date }}
+					</td>
+					<td style="width:20px;">
+						<img style="border-radius: 50px;" src="{{ product.picture.url }}" height="30" width="30">
+					</td>
+					<td>
+						<a href="">Edit</a> |
+						<a href="">Delete</a>
+					</td>
+				</tr>
+				{% empty %}
+					no product yet
+				{% endfor %}
+			</table>
+			
+			<p>
+				Extra
+			</p>
+		</div>
+		<div class="product-right">
+			
+		</div>
+	</div>
+{% endblock %}
