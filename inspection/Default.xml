@@ -21,6 +21,8 @@
         <option value="MARDIAT.smms.views.sale_query" />
         <option value="MARDIAT.smms.views.total_goods_sold" />
         <option value="MARDIAT.smms.views.total_price" />
+        <option value="SAP_app.models.Course.objects" />
+        <option value="SAP_app.views.CourseList.form_class_" />
       </list>
     </option>
   </inspection_tool>
