@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} Sale Details {% endblock %}
+
+{% block content %}
+<div class="sale-detail">
+		<div class="inner-sale-detail">
+			<div class="product-pic">
+				<img src="{{record.get_picture}}">
+				<p>
+					{{record.name}}	
+				</p>
+				
+				
+			</div>
+			<div id="product-info">
+				<hr>
+				Price
+				<p>
+					₦{{record.price}}
+				</p>
+				<hr>
+				<p>
+					Category
+					<br>
+					{{record.category}}
+				</p>
+				<hr>
+				<p>
+					Sub category
+					<br>
+					{{record.sub_category}}
+				</p>
+				<hr>
+				<p>
+					Quantity
+					<br>
+					{{record.quantity}}
+				</p>
+				<hr>
+				<p>
+					Date
+					<br>
+					{{record.date}}
+				</p>
+				<hr>
+			</div>
+		</div>
+		
+	</div>
+
+{% endblock %}

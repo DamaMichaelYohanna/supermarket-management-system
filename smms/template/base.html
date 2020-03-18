@@ -16,13 +16,13 @@
 		<div class="second-header">
 			<img src="{% static 'head2.jpeg' %}">
 			<a id="home" href="/"> Home</a>
-			<a id="product" href="/product/"> Products</a>
+			<a id="product" href="/products/"> Products</a>
 			<a id="sale" href="/sales/"> Sales</a>
 			<a id="profile" href="/profile/"> Profile</a>
 
 			<span class="social"><a href=""><img src="{% static 'fb.png'%}"></a></span>
-			<span class="social"><a href=""><img src="{% static 'fb.png'%}"></a></span>
-			<span class="social"><a href=""><img src="{% static 'fb.png'%}"></a></span>
+			<span class="social"><a href=""><img src="{% static 'sm.png'%}"></a></span>
+			<span class="social"><a href=""><img src="{% static 'in.png'%}"></a></span>
 			<div class="clr"></div>
 		</div>
 	</div>
@@ -31,6 +31,12 @@
 
 {% block content%}
 
+{% endblock %}
+
+{% block footer%}
+	<div id="foot" style="background-image:url({% static 'foot.jpeg'%});padding: 2%;text-align: center;color:tomato;">
+		© copy right 2020 Mardiat Super market management system
+	</div>
 {% endblock %}
 {% if section == 'Dashboard'%}
 	<script>
