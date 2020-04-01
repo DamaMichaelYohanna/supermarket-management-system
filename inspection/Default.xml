@@ -23,6 +23,7 @@
         <option value="MARDIAT.smms.views.total_price" />
         <option value="SAP_app.models.Course.objects" />
         <option value="SAP_app.views.CourseList.form_class_" />
+        <option value="todoapp.models.Event.objects" />
       </list>
     </option>
   </inspection_tool>
