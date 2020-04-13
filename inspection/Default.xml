@@ -27,6 +27,11 @@
         <option value="django.db.models.fields.related.ForeignKey.user" />
         <option value="django.db.models.fields.related.ForeignKey.username" />
         <option value="django.db.models.fields.related.ForeignKey.id_number" />
+        <option value="academic.models.Term.objects" />
+        <option value="academic.models.Subject.objects" />
+        <option value="account.models.Student.objects" />
+        <option value="academic.models.TakenSubject.objects" />
+        <option value="academic.models.Session.objects" />
       </list>
     </option>
   </inspection_tool>
