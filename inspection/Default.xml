@@ -25,6 +25,8 @@
         <option value="SAP_app.views.CourseList.form_class_" />
         <option value="todoapp.models.Event.objects" />
         <option value="django.db.models.fields.related.ForeignKey.user" />
+        <option value="django.db.models.fields.related.ForeignKey.username" />
+        <option value="django.db.models.fields.related.ForeignKey.id_number" />
       </list>
     </option>
   </inspection_tool>
