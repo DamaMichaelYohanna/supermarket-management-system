@@ -32,6 +32,8 @@
         <option value="account.models.Student.objects" />
         <option value="academic.models.TakenSubject.objects" />
         <option value="academic.models.Session.objects" />
+        <option value="academic.models.SchoolFeeDay.objects" />
+        <option value="academic.models.SchoolFeeBoarding.objects" />
       </list>
     </option>
   </inspection_tool>
