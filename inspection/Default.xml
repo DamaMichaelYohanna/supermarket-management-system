@@ -34,6 +34,7 @@
         <option value="academic.models.Session.objects" />
         <option value="academic.models.SchoolFeeDay.objects" />
         <option value="academic.models.SchoolFeeBoarding.objects" />
+        <option value="academic.models.SubjectAllocation.objects" />
       </list>
     </option>
   </inspection_tool>
