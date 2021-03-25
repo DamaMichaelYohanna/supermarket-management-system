@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = '7gsfe7%mj++o4ds!sosg1d0u-1hc$!romr1nqhbuj(7vph%f9$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,17 +76,22 @@ WSGI_APPLICATION = 'MARDIAT.wsgi.application'
 # note this database settings are for my personal db.
 # secondly, am using posgresql over here so you could do your
 # configuration as well
+##DATABASES = {
+##    'default': {
+##        'ENGINE': 'django.db.backends.postgresql',
+##        'NAME': 'smms',
+##        'USER': 'dama',
+##        'PASSWORD': 'leg@cy1172',
+##        'HOST': 'localhost',
+##        'PORT': '',
+##    }
+##}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'smms',
-        'USER': 'dama',
-        'PASSWORD': 'leg@cy1172',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
